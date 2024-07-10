@@ -1,0 +1,72 @@
+<!-- todo_list_app/templates/create_todo_item.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container pt-4">
+ <div class="row p-0 mt-4">
+    <div class="col-lg-4 mx-auto shadow p-0">
+        <div class="alert alert-info">
+            <h2>Add New TODO</h2>
+        </div>
+        <div class="p-4">
+            <form action="/add-todo/" method="POST">
+                {%csrf_token%}
+                {{form.as_p}} 
+                <hr>
+                <button type="submit" value="add" class="btn btn-info">Add</button>
+        </div>
+    </div>
+    <div class="col">
+        {% if todos|length == 0 %}
+            <div class="alert alert-warning text-center">
+                <br>
+                <br>
+                <p class="" style='font-size:45px'> No TODOs Here</p>
+                <br>
+                <br>
+            </div>
+        {% else %}
+        <table class="table table-hover border">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Action</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>                    
+                {% for todo in todos%}
+                <tr> 
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ todo.title }}</td>
+                    <td>
+                        {% if todo.status == 'C' %}
+                        <i class="bi bi-check-circle-fill" style='color:green;'></i>
+                        {% else %}
+                        <i class="bi bi-clock-history" style='color:green;'></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ todo.priority }}</td>
+                    <td>
+                        <a href="/delete-todo/{{todo.id}}" title="delete"><i class="bi bi-trash-fill" style='color:red;'></i></a>
+                        {% if todo.status == 'P' %}
+                        <a href="/change-status/{{todo.id}}/C" title="Mark-Completed" style='text-decoration:None;'>✅</a>
+                        {% comment %} {% else %}
+                        <a href="/change-status/{{todo.id}}/P" title="Mark-Pending"><i class="bi bi-clock-history" style='color:green;'></i></a>
+                         {% endcomment %}
+                        {% endif %}
+                    
+                    </td>
+                    <td>{{ todo.date }}</td>   
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>        
+        {% endif %}
+    </div>
+ </div>
+</div>
+{% endblock %}

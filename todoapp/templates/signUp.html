@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-lg-5 shadow mx-auto mt-4">
+<div class="alert alert-success"><h2>Create Account</h2></div>
+<div class="p-3">
+    <form method="post" action ="/signUp/">
+        {% csrf_token %}
+        {{form.as_p}}
+        <hr>
+        <input class="btn btn-success" type="submit" value="Create Account">
+        <a class="d-flex justify-content-end" href="{% url 'login' %}">Already have account?</a>
+    </form>
+</div>
+</div>
+{% endblock %}
