@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todoapp',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -127,19 +128,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 import os
 STATIC_URL = 'static/'
-# STATIC_ROOT=os.path.join(BASE_DIR,'static')'
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
 # MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # MEDIA_URL='/media/'
 
-LOGIN_REDIRECT_URL='/'
+# LOGIN_REDIRECT_URL='/'
 # EMAIL_BACKEND='django.core.mail.backends.smtp.backends.smtp.EmailBackend'
 # EMAIL_HOST="smtp.gmail.com"
 # EMAIL_PORT=587
 # EMAIL_USE_TLS=True
 
-# EMAIL_HOST_USER="YOUR MAIL"
-# EMAIL_HOST_PASSWORD="PASSWORD"
+# EMAIL_HOST_USER="unqanonymous@gmail.com"
+# EMAIL_HOST_PASSWORD="Deepsmtp@63"
 
 
 
